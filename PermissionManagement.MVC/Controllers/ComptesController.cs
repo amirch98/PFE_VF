@@ -117,7 +117,7 @@ namespace PermissionManagement.MVC.Controllers
                         }
                     }
                 }
-                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Comptes.ToList()) });
+                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Comptes.Include(c => c.Segment).ToList()) });
             }
             return Json(new { isValid = false, html = RenderRazorViewToString(this, "AddOrEdit", compte) });
         }
@@ -157,7 +157,7 @@ namespace PermissionManagement.MVC.Controllers
             };
             _context.Change_Log.Add(change_Log);
             await _context.SaveChangesAsync();
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Comptes.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Comptes.Include(c => c.Segment).ToList()) });
         }
 
         private bool CompteExists(int id)

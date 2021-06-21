@@ -54,18 +54,6 @@ namespace PermissionManagement.MVC.Controllers
             }
         }
 
-        public bool validmail (string mail)
-        {
-            Result myResult;
-            EmailValidation valid = new EmailValidation();
-
-            myResult = valid.ValidEmail(mail);
-            if (!myResult.IsValid) {
-                return false;
-            }
-            return true;
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit(int id, [Bind("ContactID,Title,Name,LastName,Tel,Email,Statut,SegmentID")] Contact contact)
@@ -142,7 +130,7 @@ namespace PermissionManagement.MVC.Controllers
             };
             _context.Change_Log.Add(change_Log);
             await _context.SaveChangesAsync();
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Contacts.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Contacts.Include(c => c.Segment).ToList()) });
         }
 
         private bool ContactExists(int id)
@@ -189,7 +177,7 @@ namespace PermissionManagement.MVC.Controllers
             _context.Change_Log.Add(change_Log);
             await _context.SaveChangesAsync();
 
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Contacts.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Contacts.Include(c => c.Segment).ToList()) });
         }
 
         // GET: Affectations/Create
@@ -218,7 +206,7 @@ namespace PermissionManagement.MVC.Controllers
                 };
                 _context.Change_Log.Add(change_Log);
                 await _context.SaveChangesAsync();
-                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Contacts.ToList()) });
+                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Contacts.Include(c => c.Segment).ToList()) });
 
             }
             ViewData["CompteID"] = new SelectList(_context.Comptes, "CompteID", "AccountName", affectation.CompteID);
@@ -230,42 +218,6 @@ namespace PermissionManagement.MVC.Controllers
         {
             var pfeContext = _context.Affectation.Include(a => a.Compte).Include(a => a.Contact);
             return View(await pfeContext.ToListAsync());
-        }
-
-        Task<bool> IsValidAsync(string email)
-        {
-            try
-            {
-                var mailAddress = new MailAddress(email);
-                var host = mailAddress.Host;
-                return CheckDnsEntriesAsync(host);
-            }
-            catch (FormatException)
-            {
-                return Task.FromResult(false);
-            }
-        }
-
-        [Obsolete]
-        async Task<bool> CheckDnsEntriesAsync(string domain)
-        {
-            try
-            {
-                var lookup = new LookupClient
-                {
-                    Timeout = TimeSpan.FromSeconds(5)
-                };
-                var result = await lookup.QueryAsync(domain, QueryType.ANY).ConfigureAwait(false);
-
-                var records = result.Answers.Where(record => record.RecordType == DnsClient.Protocol.ResourceRecordType.A ||
-                                                             record.RecordType == DnsClient.Protocol.ResourceRecordType.AAAA ||
-                                                             record.RecordType == DnsClient.Protocol.ResourceRecordType.MX);
-                return records.Any();
-            }
-            catch (DnsResponseException)
-            {
-                return false;
-            }
         }
     }
 }

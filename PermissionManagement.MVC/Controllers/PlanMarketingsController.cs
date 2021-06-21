@@ -65,7 +65,7 @@ namespace PermissionManagement.MVC.Controllers
            
             _context.Change_Log.Add(change_Log);
             await _context.SaveChangesAsync();
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMarketings.Include(p => p.PlanMedical).ToList()) });
         }
 
         private bool PlanMarketingExists(int id)

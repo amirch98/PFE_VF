@@ -98,7 +98,7 @@ namespace PermissionManagement.MVC.Controllers
                         }
                     }
                 }
-                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Consents.ToList()) });
+                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Consents.Include(c => c.Brand).Include(c => c.Contact).ToList()) });
             }
             return Json(new { isValid = false, html = RenderRazorViewToString(this, "AddOrEdit", consent) });
         }
@@ -138,7 +138,7 @@ namespace PermissionManagement.MVC.Controllers
 
             _context.Change_Log.Add(change_Log);
             await _context.SaveChangesAsync();
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Consents.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Consents.Include(c => c.Brand).Include(c => c.Contact).ToList()) });
         }
 
         private bool ConsentExists(int id)

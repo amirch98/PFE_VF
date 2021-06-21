@@ -1,5 +1,13 @@
 ﻿@model PermissionManagement.MVC.Models.ManageUserRolesViewModel
-<h3>Manage Roles for @Model.UserId</h3>
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{ 
+    var user = await UserManager.FindByIdAsync(Model.UserId);
+}
+
+<h3>Manage Roles for @user.Email</h3>
 <br />
 <div class="card">
 
@@ -21,18 +29,18 @@
 
                     @for (int i = 0; i < Model.UserRoles.Count(); i++)
                     {
-                        <tr>
-                            <td>
-                                <input asp-for="@Model.UserRoles[i].RoleName" type="hidden" />
-                                @Model.UserRoles[i].RoleName
-                            </td>
-                            <td>
-                                <div class="form-check m-1">
-                                    <input asp-for="@Model.UserRoles[i].Selected" class="form-check-input" />
-                                </div>
-                            </td>
-                        </tr>
-                    }
+        <tr>
+            <td>
+                <input asp-for="@Model.UserRoles[i].RoleName" type="hidden" />
+                @Model.UserRoles[i].RoleName
+            </td>
+            <td>
+                <div class="form-check m-1">
+                    <input asp-for="@Model.UserRoles[i].Selected" class="form-check-input" />
+                </div>
+            </td>
+        </tr>
+}
                 </tbody>
             </table>
 

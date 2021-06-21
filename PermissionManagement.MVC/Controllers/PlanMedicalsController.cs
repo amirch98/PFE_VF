@@ -114,7 +114,7 @@ namespace pfe.Controllers
                         }
                     }
                 }
-                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.ToList()) });
+                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.Include(p => p.Brand).Include(p => p.Segment).Include(p => p.Produit).ToList()) });
             }
             return Json(new { isValid = false, html = RenderRazorViewToString(this, "AddOrEdit", planMedical) });
         }
@@ -152,7 +152,7 @@ namespace pfe.Controllers
 
             _context.Change_Log.Add(change_Log);
             await _context.SaveChangesAsync();
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.Include(p => p.Brand).Include(p => p.Segment).Include(p => p.Produit).ToList()) });
         }
 
         private bool PlanMedicalExists(int id)
@@ -367,7 +367,7 @@ namespace pfe.Controllers
             planMedical.Targets_Generated = true;
             _context.PlanMedicals.Update(planMedical);
             await _context.SaveChangesAsync();
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.Include(p => p.Brand).Include(p => p.Segment).Include(p => p.Produit).ToList()) });
         }
 
         //GET : Ajout Produit
@@ -535,7 +535,7 @@ namespace pfe.Controllers
 
                 _context.Change_Log.Add(change_Log);
                 await _context.SaveChangesAsync();
-                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.ToList()) });
+                return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.PlanMedicals.Include(p => p.Brand).Include(p => p.Segment).Include(p => p.Produit).ToList()) });
             }
             return Json(new { isValid = false, html = RenderRazorViewToString(this, "Ajout_Produit", planMedical) });
         }
@@ -543,7 +543,7 @@ namespace pfe.Controllers
         // GET : Activites
         public async Task<IActionResult> Activites(int id)
         {
-            var activites = _context.Activites.Include(a => a.Contact).Include(a => a.PlanMedical).Where(a => a.PlanMedicalID == id);
+            var activites = _context.Activites.Include(a => a.Contact).Include(a => a.PlanMedical).Where(a => a.PlanMarketingID == id);
             return View(await activites.ToListAsync());
         }
     }

@@ -154,7 +154,7 @@ namespace PermissionManagement.MVC.Controllers
                         }
                     }
                 }
-                    return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Allocation.ToList()) });
+                    return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Allocation.Include(a => a.Produit).Include(a => a.Contact).ToList()) });
                 }
                 return Json(new { isValid = false, html = RenderRazorViewToString(this, "AddOrEdit", allocation) });
             }
@@ -196,7 +196,7 @@ namespace PermissionManagement.MVC.Controllers
             };
             _context.Change_Log.Add(change_Log);
             await _context.SaveChangesAsync();
-            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Allocation.ToList()) });
+            return Json(new { html = RenderRazorViewToString(this, "_ViewAll", _context.Allocation.Include(a => a.Produit).Include(a => a.Contact).ToList()) });
         }
 
         private bool AllocationExists(int id)
