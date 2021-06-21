@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Activite>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Activites</h1>
+
+<table id="example" class="table table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.De)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.À)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ratings)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.De)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.À)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact.LastName)
+                </td>
+                @if (item.Ratings != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ratings)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <p>Pas de ratings</p>
+                    </td>
+                }
+
+                <td>
+                    <a asp-action="Rate" asp-route-id="@item.ActiviteID">Rate</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

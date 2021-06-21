@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Segment>
+
+
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SRang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Axe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Raison)
+            </th>
+            <th><a onclick="showInPopup('@Url.Action("AddOrEdit","Segments",null,Context.Request.Scheme)','New Segment')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Segment</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SRang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Axe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Raison)
+            </td>
+          
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                    </button>
+                    <div class="dropdown-menu shadow animated--grow-in">
+
+                        <a onclick="showInPopup('@Url.Action("AddOrEdit","Segments",new {id=item.SegmentID},Context.Request.Scheme)','Update Segment')" class="btn btn-success text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                        <form asp-action="Delete" asp-route-id="@item.SegmentID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                            <input type="hidden" asp-for="@item.SegmentID" />
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </form>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

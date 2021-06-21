@@ -1,0 +1,97 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{ ViewData["Title"] = "Home Page"; }
+<style>
+    .img-thumbnail {
+        height: 70%;
+    }
+
+    .card {
+        background: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+        cursor: pointer;
+        max-height: 18rem;
+        max-width: 18rem;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+
+    .card-body {
+        height: 30%;
+    }
+
+    .card-title {
+        float: none;
+    }
+
+
+    #try {
+        margin-top: 15%;
+    }
+</style>
+@if (User.IsInRole("Manager"))
+{
+<div class="row justify-content-md-center">
+    <div class="card-deck">
+
+
+        <div class="card" id="try">
+
+            <img class="card-img-top" src="~/image/undraw_Segmentation_re_gduq.png" alt="Card image cap">
+            <div class="card-body text-center">
+                <br />  
+                <h5 class="card-title">Segments</h5>
+                <p class="card-text">Gestion Segments</p>
+                <a asp-controller="Segments" asp-action="Index" class="stretched-link"></a>
+
+
+
+            </div>
+
+        </div>
+        <div class="card" id="try">
+            <img class="card-img-top" src="~/image/undraw_medical_research_qg4d.png" alt="Card image cap">
+            <div class="card-body text-center">
+                <br /> 
+                <h5 class="card-title">Plan Medical</h5>
+                <p class="card-text">Gestion Plan Medical</p>
+                <a asp-controller="PlanMedicals" asp-action="Index" class="stretched-link"></a>
+
+
+            </div>
+        </div>
+        <div class="card" id="try">
+            <img class="card-img-top" src="~/image/undraw_Marketing_re_7f1g.png" alt="Card image cap">
+            <div class="card-body text-center">
+                <br /> 
+                <h5 class="card-title">Plan Marketing</h5>
+                <p class="card-text">Gestion Plan Marketing</p>
+                <a asp-controller="PlanMarketings" asp-action="Index" class="stretched-link"></a>
+
+
+
+            </div>
+        </div>
+        <div class="card" id="try">
+
+            <img class="card-img-top" src="~/image/undraw_Online_calendar_re_wk3t.png" alt="Card image cap">
+          
+                <div class="card-body text-center">
+                    <h5 class="card-title"> Tournée</h5>
+                    <p class="card-text">Gestion  Tournée</p>
+                    <a asp-controller="Activites" asp-action="Index" class="stretched-link"></a>
+
+
+
+                </div>
+
+             
+            
+        </div>
+    </div>
+</div>}

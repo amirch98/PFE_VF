@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Compte>
+
+
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.AccountName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SegmentID)
+            </th>
+           
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Comptes",null,Context.Request.Scheme)','New Account')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Account</a> <br />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SegmentID)
+                </td>
+                
+                <td class="text-center">
+                    <div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu shadow animated--grow-in">
+
+                                <a onclick="showInPopup('@Url.Action("AddOrEdit","Comptes",new {id=item.CompteID},Context.Request.Scheme)','Update Account')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                <form asp-action="Delete" asp-route-id="@item.CompteID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@item.CompteID" />
+                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    
+</td>
+            </tr>
+        }
+    </tbody>
+</table>

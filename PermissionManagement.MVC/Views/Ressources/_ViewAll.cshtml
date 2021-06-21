@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Ressource>
+
+
+
+
+
+<table id="example" class="table table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RessourceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RPrenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SRegion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ville)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sortie)
+            </th>
+            <th width="15%">
+             <a onclick="showInPopup('@Url.Action("AddOrEdit","Ressources",null,Context.Request.Scheme)','New Ressource')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Ressource</a> 
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RessourceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RPrenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SRegion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ville)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sortie)
+            </td>
+         
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                    </button>
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a asp-action="Index1" asp-route-id="@item.RessourceID" class="btn btn-dark">Activities</a>
+                        <a onclick="showInPopup('@Url.Action("AddOrEdit","Ressources",new {id=item.RessourceID},Context.Request.Scheme)','Update Ressorce')" class="btn btn-info text-white">Edit</a>
+                        <form asp-action="Delete" asp-route-id="@item.RessourceID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                            <input type="hidden" asp-for="@item.RessourceID" />
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </form>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+       
+        }
+    </tbody>
+</table>

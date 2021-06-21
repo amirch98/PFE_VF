@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Activite>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.De)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.À)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ratings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ressource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanMarketing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanMedical)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Allocation)
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.De)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.À)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ratings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ressource.RessourceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanMarketing.PlanMarketingID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanMedical.PlanMedicalID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allocation.AllocationID)
+            </td>
+          
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,146 @@
+﻿@model PermissionManagement.MVC.Models.Ressource
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = null;
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.RessourceID" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="RName" class="control-label"></label>
+                    <input asp-for="RName" class="form-control" />
+                    <span asp-validation-for="RName" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label asp-for="RPrenom" class="control-label"></label>
+                    <input asp-for="RPrenom" class="form-control" />
+                    <span asp-validation-for="RPrenom" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="SRegion" class="control-label"></label>
+                    <select asp-for="SRegion" class="form-control" id="Type">
+                        <option disabled selected> Selectionner une région </option>
+                        <option value="Nord"> Nord </option>
+                        <option value="Centre"> Centre </option>
+                        <option value="Sud"> Sud </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="form-group" id="Nville" hidden>
+                        <label class="control-label">ville</label>
+
+                        <select class="form-control" id="select1" multiple="multiple" name="ville">
+                            <option value="Ariana">Ariana</option>
+                            <option value="Béja">Béja</option>
+                            <option value="Ben Arous">Ben Arous</option>
+                            <option value="Bizerte">Bizerte</option>
+                            <option value="Jendouba">Jendouba</option>
+                            <option value="Manouba">Manouba</option>
+                            <option value="Nabeul">Nabeul</option>
+                            <option value="Tunis">Tunis</option>
+                            <option value="Zaghouan">Zaghouan</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="Cville" hidden>
+                        <label class="control-label">ville</label>
+
+                        <select class="form-control" id="select2" multiple="multiple" name="ville">
+                            <option value="Kairouan">Kairouan</option>
+                            <option value="Kef">Kef</option>
+                            <option value="Sidi Bouzid">Sidi Bouzid</option>
+                            <option value="Siliana">Siliana</option>
+                            <option value="Sousse">Sousse</option>
+                            <option value="Mahdia">Mahdia</option>
+                            <option value="Monastir">Monastir</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="Sville" hidden>
+                        <label class="control-label">ville</label>
+                        <select class="form-control" id="select3" multiple="multiple" name="ville">
+                            <option value="Gabes">Gabes</option>
+                            <option value="Gafsa">Gafsa</option>
+                            <option value="Kasserine">Kasserine</option>
+                            <option value="Kebili">Kebili</option>
+                            <option value="Médenine">Médenine</option>
+                            <option value="Sfax">Sfax</option>
+                            <option value="Tatouine">Tatouine</option>
+                            <option value="Tozeur">Tozeur</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Entree" class="control-label">Join Date</label>
+                        <input asp-for="Entree" class="form-control" />
+                        <span asp-validation-for="Entree" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Sortie" class="control-label">End Date</label>
+                        <input asp-for="Sortie" class="form-control" />
+                        <span asp-validation-for="Sortie" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-secondary btn-block btn-md text-white" />
+
+
+
+                <a asp-action="Index" class="btn btn-dark btn-block btn-md text-white">Back to List</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+    <script>
+
+        $("#Type").change(function () {
+            var v = $(this).val();
+            console.log(v);
+            if (v == "Nord") {
+                $("#Nville").removeAttr('hidden');
+                $("#Cville").prop('hidden', true);
+                $("#Sville").prop('hidden', true);
+
+            }
+            else if (v == "Centre") {
+                $("#Cville").removeAttr('hidden');
+                $("#Nville").prop('hidden', true);
+                $("#Sville").prop('hidden', true);
+
+            }
+            else {
+                $("#Sville").removeAttr('hidden');
+                $("#Nville").prop('hidden', true);
+                $("#Cville").prop('hidden', true);
+
+            }
+        });
+
+            //Initialize Select2 Elements
+        $('#select1').select2();
+        $('#select2').select2();
+        $('#select3').select2();
+
+
+            
+    </script>
+
+

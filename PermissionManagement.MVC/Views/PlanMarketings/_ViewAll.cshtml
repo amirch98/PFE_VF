@@ -1,0 +1,78 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.PlanMarketing>
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_debut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_fin)
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Segment
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanMarketingID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_debut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_fin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanMedical.BrandID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanMedical.SegmentID)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+                            <a asp-action="Cibles" asp-route-id="@item.PlanMarketingID" class="btn btn-dark">Liste de cibles</a>
+                            @if (item.Activities_Generated == false)
+                            {
+                                <a onclick="showInPopup('@Url.Action("Generer_A","PlanMarketings",new {id=item.PlanMarketingID},Context.Request.Scheme)','Generate Acts Plan')" class="btn btn-primary text-white">Generer Activite</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index_A" asp-route-id="@item.PlanMarketingID" class="btn btn-secondary">Liste de activites</a>
+                            }
+                            <form asp-action="Delete" asp-route-id="@item.PlanMarketingID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                <input type="hidden" asp-for="@item.PlanMarketingID" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+
+                            </div>
+
+                        </div>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

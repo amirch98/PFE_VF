@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<style>
+    .img-thumbnail {
+        height: 70%;
+    }
+
+    .card {
+        background: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+        cursor: pointer;
+        max-height: 18rem;
+        max-width: 18rem;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+
+    .card-body {
+        height: 30%;
+    }
+
+    .card-title {
+        float: none;
+    }
+
+    .row {
+        margin-top: 20%;
+    }
+</style>
+
+@if (User.IsInRole("Manager"))
+{
+<div class="row justify-content-md-center">
+    <div class="card-deck">
+        <div class="card p-2 shadow-sm rounded">
+            <img class="card-img-top img-thumbnail" src="/brands.svg" alt="Card image cap">
+            <div class="card-body text-center">
+                <h5 class="card-title">Brands</h5>
+                <p class="card-text">Gestion de Brands</p>
+                <a asp-controller="Brands" asp-action="Index" class="stretched-link"></a>
+            </div>
+        </div>
+        <div class="card p-2 shadow-sm rounded">
+            <img class="card-img-top img-thumbnail" src="/product.svg" alt="Card image cap">
+            <div class="card-body text-center">
+                <h5 class="card-title">Product</h5>
+                <p class="card-text">Gestion de Produits</p>
+                <a asp-controller="Produits" asp-action="Index" class="stretched-link"></a>
+            </div>
+        </div>
+        <div class="card p-2 shadow-sm rounded">
+            <img class="card-img-top img-thumbnail" src="/price.svg" alt="Card image cap">
+            <div class="card-body text-center">
+                <h5 class="card-title">Price List</h5>
+                <p class="card-text">Gestion de Price List</p>
+                <a asp-controller="Prices" asp-action="Index" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+</div>}

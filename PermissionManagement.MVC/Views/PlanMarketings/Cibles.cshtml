@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.PlanTarget>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table id="example" class="table table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Compte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compte.AccountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact.LastName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

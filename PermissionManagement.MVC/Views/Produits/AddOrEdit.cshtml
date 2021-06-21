@@ -1,0 +1,109 @@
+﻿@model PermissionManagement.MVC.Models.Produit
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = null;
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.ProduitID" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (Model.ProduitID == 0)
+            {
+                <div class="form-group">
+                    <label asp-for="ProduitID" class="control-label"></label>
+                    <input asp-for="ProduitID" class="form-control" />
+                    <span asp-validation-for="ProduitID" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <input type="hidden" asp-for="ProduitID" />
+            }
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="ProduitNom" class="control-label"></label>
+                    <input asp-for="ProduitNom" class="form-control" />
+                    <span asp-validation-for="ProduitNom" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Type" class="control-label"></label>
+                    <select asp-for="Type" id="Type" class="form-control">
+                        <option value="Brand">Brand</option>
+                        <option value="Lot">Lot</option>
+                    </select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="Info" hidden>
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="BrandID" class="control-label"></label>
+                        <select asp-for="BrandID" class="form-control" asp-items="ViewBag.BrandID"></select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Competitor" class="control-label"></label>
+                        <select asp-for="Competitor" class="form-control">
+                            <option value="Oui">Oui</option>
+                            <option value="Non">Non</option>
+                        </select>
+                        <span asp-validation-for="Competitor" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Unite" class="control-label"></label>
+                        <select asp-for="Unite" class="form-control">
+                            <option value="Carton">Carton</option>
+                            <option value="Paquet">Paquet</option>
+                        </select>
+                        <span asp-validation-for="Unite" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="PriceID" class="control-label"></label>
+                        <select asp-for="PriceID" class="form-control" asp-items="ViewBag.PriceID"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="PDescription" class="control-label"></label>
+                        <textarea asp-for="PDescription" class="form-control" />
+                        <span asp-validation-for="PDescription" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="Stock_Physique" class="control-label"></label>
+                        <input asp-for="Stock_Physique" class="form-control" />
+                        <span asp-validation-for="Stock_Physique" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-success btn-block btn-md text-white" />
+
+                    <a asp-action="Index" class="btn btn-secondary btn-block btn-md text-white">Back to List</a>
+                </div>
+
+            </div>
+        </form>
+     </div>
+</div>
+
+
+<script>
+    $("#Type").change(function () {
+        var v = $(this).val();
+        console.log(v);
+        if (v == "Lot") {
+            $("#Info").removeAttr('hidden');
+        }
+        else {
+            $("#Info").prop('hidden', true);
+        }
+    });
+</script>
+    
+

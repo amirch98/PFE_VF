@@ -1,0 +1,146 @@
+﻿@model PermissionManagement.MVC.Models.Segment
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = null;
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.SegmentID" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SegmentID" />
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="SName" class="control-label"></label>
+                        <input asp-for="SName" class="form-control" />
+                        <span asp-validation-for="SName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="SRang" class="control-label"></label>
+                        <input asp-for="SRang" class="form-control" />
+                        <span asp-validation-for="SRang" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="SType" class="control-label"></label>
+                        <select asp-for="SType" class="form-control" id="SType" asp-items="Html.GetEnumSelectList<SType>()">
+                            <option selected disabled>Selectionnez type</option>
+                        </select>
+                        <span asp-validation-for="SType" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Axe" class="control-label"></label>
+                        <select asp-for="Axe" class="form-control" id="Axe" asp-items="Html.GetEnumSelectList<Axe>()">
+                            <option selected disabled>Selectionnez axe</option>
+                        </select>
+                        <span asp-validation-for="Axe" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group" hidden id="g">
+                        <label  class="control-label">Raison</label>
+                        <select class="form-control" name="rais">
+                            <option selected disabled>Selectionnez raison</option>
+                            <option value="Population">Population</option>
+                            <option value="Language">Language</option>
+                            <option value="Ville">Ville</option>
+                            <option value="Pays">Pays</option>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden id="d">
+                        <label class="control-label">Raison</label>
+                        <select class="form-control" name="rais">
+                            <option selected disabled>Selectionnez raison</option>
+                            <option value="Revenu">Revenu</option>
+                            <option value="Education">Education</option>
+                            <option value="Sexe">Sexe</option>
+                            <option value="Age">Age</option>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden id="p">
+                        <label class="control-label">Raison</label>
+                        <select class="form-control" name="rais">
+                            <option selected disabled>Selectionnez raison</option>
+                            <option value="Valeurs"></option>
+                            <option value="Intérêt">Intérêt</option>
+                            <option value="Soucis">Soucis</option>
+                            <option value="Personalité">Personalité</option>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden id="c">
+                        <label class="control-label">Raison</label>
+                        <select class="form-control" name="rais">
+                            <option selected disabled>Selectionnez raison</option>
+                            <option value="Occasion">Occasion</option>
+                            <option value="Usage">Usage</option>
+                            <option value="Intention">Intention</option>
+                            <option value="Achat">Achat</option>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    $("#SType").change(function () {
+        var v = $(this).val();
+        console.log(v);
+        if (v == 0) {
+            $("#Axe").change(function () {
+                var a = $(this).val();
+                console.log(a);
+                if (a == 0) {
+                    $("#g").removeAttr('hidden');
+                    $("#c,#p,#d").prop('hidden', true);
+                }
+                if (a == 1) {
+                    $("#d").removeAttr('hidden');
+                    $("#c,#p,#g").prop('hidden', true);
+                }
+                if (a == 2) {
+                    $("#p").removeAttr('hidden');
+                    $("#c,#g,#d").prop('hidden', true);
+                }
+                if (a == 3) {
+                    $("#c").removeAttr('hidden');
+                    $("#g,#p,#d").prop('hidden', true);
+                }
+            });
+        }
+        else {
+            $("#g,#p,#c,#d").prop('hidden', true);
+        }
+    });
+</script>

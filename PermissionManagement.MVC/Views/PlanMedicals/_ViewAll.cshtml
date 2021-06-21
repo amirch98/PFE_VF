@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PlanMedical>
+
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date_debut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date_fin)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","PlanMedicals",null,Context.Request.Scheme)','New Plan')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Plan</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanMedicalID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_debut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_fin)
+                </td>
+
+                <td>
+                   
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu shadow animated--grow-in">
+                                @if (item.Targets_Generated == false)
+                                {
+
+                                    <form asp-action="Generate" asp-route-id="@item.PlanMedicalID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                        <input type="hidden" asp-for="@item.PlanMedicalID" />
+                                        <input type="submit" value="Generate" class="btn btn-primary" />
+                                    </form>
+
+                                }
+                                else
+                                {
+                                    <a asp-action="Cibles" asp-route-id="@item.PlanMedicalID" class="btn btn-secondary">list of targets</a>
+                                }
+                                @if (item.Activities_Generated == false)
+                                {
+                                    <a onclick="showInPopup('@Url.Action("Ajout_Produit","PlanMedicals",new {id=item.PlanMedicalID},Context.Request.Scheme)','Generate Acts Plan')" class="btn btn-info">Generer Activite</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Activites" asp-route-id="@item.PlanMedicalID" class="btn btn-secondary">list of activities</a>
+                                }
+
+
+                            </div>
+                            </div>
+                    
+</td>
+            </tr>
+        }
+    </tbody>
+</table>

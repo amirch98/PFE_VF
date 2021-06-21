@@ -1,0 +1,68 @@
+﻿@model PermissionManagement.MVC.Models.PlanMedical
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit"  asp-route-id="@Model.PlanMedicalID" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PlanMedicalID" />
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="PName" class="control-label"></label>
+                        <input asp-for="PName" class="form-control" />
+                        <span asp-validation-for="PName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="date_debut" class="control-label"></label>
+                        <input asp-for="date_debut" class="form-control" />
+                        <span asp-validation-for="date_debut" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="date_fin" class="control-label"></label>
+                        <input asp-for="date_fin" class="form-control" />
+                        <span asp-validation-for="date_fin" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="BrandID" class="control-label"></label>
+                        <select asp-for="BrandID" class="form-control" asp-items="ViewBag.BrandID">
+                            <option selected disabled>Enter Brand ID....</option>
+                        </select>
+                        <span asp-validation-for="BrandID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="SegmentID" class="control-label"></label>
+                        <select asp-for="SegmentID" class="form-control" asp-items="ViewBag.SegmentID">
+                            <option selected disabled>Enter Segment ID....</option>
+                        </select>
+                        <span asp-validation-for="SegmentID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

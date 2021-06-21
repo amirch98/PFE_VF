@@ -1,0 +1,91 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Allocation>
+
+
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.A_Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.A_CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.A_To)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.A_Statut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Allocations",null,Context.Request.Scheme)','New Allocation')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Allocation</a> <br />
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.A_Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.A_CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.A_To)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.A_Statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Compte.CompteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produit.ProduitID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact.ContactID)
+            </td>
+
+            <td class="text-center">
+                <div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+
+                            <a onclick="showInPopup('@Url.Action("AddOrEdit","Allocations",new {id=item.AllocationID},Context.Request.Scheme)','Update Allocation')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.AllocationID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                <input type="hidden" asp-for="@item.AllocationID" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                
+</td>
+        </tr>
+        }
+    </tbody>
+</table>

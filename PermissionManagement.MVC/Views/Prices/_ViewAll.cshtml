@@ -1,0 +1,78 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Price>
+
+
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.PriceNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Context)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDebut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Currency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+          
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Prices",null,Context.Request.Scheme)','New Price')" class="btn btn-info text-white"><i class="fas fa-random"></i> New Price List</a>   
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Context)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDebut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Currency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+               
+                <td>
+                   
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+
+                            <a onclick="showInPopup('@Url.Action("AddOrEdit","Prices",new {id=item.PriceID},Context.Request.Scheme)','Update Price')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.PriceID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                <input type="hidden" asp-for="@item.PriceID" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

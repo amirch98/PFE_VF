@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{ ViewData["Title"] = "Home Page"; }
+<style>
+    .img-thumbnail {
+        height: 70%;
+    }
+
+    .card {
+        background: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+        cursor: pointer;
+        max-height: 18rem;
+        max-width: 18rem;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+
+    .card-body {
+        height: 30%;
+    }
+
+    .card-title {
+        float: none;
+    }
+
+
+    #try {
+        margin-top: 15%;
+    }
+</style>
+@if (User.IsInRole("Manager"))
+{
+<div class="row justify-content-md-center">
+    <div class="card-deck">
+
+
+        <div class="card" id="try">
+
+            <img class="card-img-top" src="~/image/undraw_empty_xct9.png" alt="Card image cap">
+            <div class="card-body text-center">
+                <h5 class="card-title">Allocations</h5>
+                <p class="card-text">Gestion  Allocations</p>
+                <a asp-controller="Allocations" asp-action="Index" class="stretched-link"></a>
+            
+
+            </div>
+
+        </div>
+        <div class="card" id="try">
+            <img class="card-img-top" src="~/image/undraw_pay_online_b1hk.png" alt="Card image cap">
+            <div class="card-body text-center">
+                <h5 class="card-title">Notes frais</h5>
+                <p class="card-text">Gestion Notes frais</p>
+                <a asp-controller="NoteFrais" asp-action="Index" class="stretched-link"></a>
+              
+
+            </div>
+        </div>
+        <div class="card" id="try">
+            <br />
+            <img class="card-img-top" src="~/image/undraw_meet_the_team_e5b7.png" alt="Card image cap">
+            <div class="card-body text-center">
+                <h5 class="card-title">Ressources</h5>
+                <p class="card-text">Gestion Ressources</p>
+                <a asp-controller="Ressources" asp-action="Index" class="stretched-link"></a>
+              
+            </div>
+        </div>
+    </div>
+</div>}

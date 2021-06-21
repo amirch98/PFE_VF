@@ -1,0 +1,93 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Produit>
+
+<a onclick="showInPopup('@Url.Action("AddOrEdit","Produits",null,Context.Request.Scheme)','New Product')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Product</a>
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProduitNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Competitor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock_Theorique)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock_Physique)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProduitNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Competitor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock_Theorique)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock_Physique)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price.PriceNom)
+                </td>
+
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+
+                            <a onclick="showInPopup('@Url.Action("AddOrEdit","Produits",new {id=item.ProduitID},Context.Request.Scheme)','Update Product')" class="btn btn-success text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.ProduitID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                <input type="hidden" asp-for="@item.ProduitID" />
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </form>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Contact>
+
+<a asp-action="IndexA" class="btn btn-outline-success">Liste d'affectation</a>
+
+<table id="example" class="table table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Segment)
+            </th>
+
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Contacts",null,Context.Request.Scheme)','New Contact')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Contact</a>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (!(item.Statut == "Deleted"))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Segment.SegmentID)
+                    </td>
+
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu shadow animated--grow-in">
+                                @if (item.Statut == "Desactived")
+                                {
+                                    <form asp-action="Changer_S" asp-route-id="@item.ContactID" onsubmit="return jQueryAjaxDelete(this)" class="dropdown-item d-inline">
+                                        <input type="hidden" asp-for="@item.ContactID" />
+                                        <input type="submit" value="Activate" class="btn btn-success" />
+                                    </form>
+                                }
+                                else if (item.Statut == "Active")
+                                {
+                                    <form asp-action="Changer_S" asp-route-id="@item.ContactID" onsubmit="return jQueryAjaxDelete(this)" class="dropdown-item d-inline">
+                                        <input type="hidden" asp-for="@item.ContactID" />
+                                        <input type="submit" value="Desactivate" class="btn btn-secondary" />
+                                    </form>
+                                }
+                            <div class="dropdown-item">
+                                <a onclick="showInPopup('@Url.Action("AddOrEdit","Contacts",new {id=item.ContactID},Context.Request.Scheme)','Update Contact')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                            </div>                                <form asp-action="Delete" asp-route-id="@item.ContactID" onsubmit="return jQueryAjaxDelete(this)" class="dropdown-item d-inline">
+                                    <input type="hidden" asp-for="@item.ContactID" />
+                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                </form>
+                                <div class="dropdown-item"><a onclick="showInPopup('@Url.Action("CreateA","Contacts",new {id=item.ContactID},Context.Request.Scheme)','Affect Contact')" class="btn btn-dark text-white">Affect</a></div>
+                            </div>
+
+                        </div>
+                        
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

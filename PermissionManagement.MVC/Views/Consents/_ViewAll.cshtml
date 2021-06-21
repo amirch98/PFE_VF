@@ -1,0 +1,73 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Consent>
+
+
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.C_CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.C_CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Consents",null,Context.Request.Scheme)','New Consent')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Consent</a> <br />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C_CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C_CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandNom)
+                </td>
+                <td>
+                    <div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu shadow animated--grow-in">
+
+                                <a onclick="showInPopup('@Url.Action("AddOrEdit","Consents",new {id=item.ConsentID},Context.Request.Scheme)','Update Consent')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                <form asp-action="Delete" asp-route-id="@item.ConsentID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@item.ConsentID" />
+                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

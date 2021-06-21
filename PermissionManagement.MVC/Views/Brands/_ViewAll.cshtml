@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PermissionManagement.MVC.Models.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table id="example" class="table table-bordered" style="width:100%;background-color: white;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandNom)
+            </th>
+
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Brands",null,Context.Request.Scheme)','New Brand')" class="btn btn-info text-white"><i class="fas fa-plus-square"></i> New Brand</a> <br />
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandNom)
+                </td>
+
+                <td class="text-center">
+                    <div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu shadow animated--grow-in">
+
+                                <a onclick="showInPopup('@Url.Action("AddOrEdit","Brand",new {id=item.BrandID},Context.Request.Scheme)','Update Brand')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                <form asp-action="Delete" asp-route-id="@item.BrandID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@item.BrandID" />
+                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
