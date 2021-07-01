@@ -6,7 +6,9 @@
 <table id="example" class="table table-bordered" style="width:100%;background-color: white;">
     <thead>
         <tr>
-            
+            <th>
+                ID
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.AccountName)
             </th>
@@ -23,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.CType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SegmentID)
+                @Html.DisplayNameFor(model => model.Segment)
             </th>
            
             <th>
@@ -35,7 +37,9 @@
         @foreach (var item in Model)
         {
             <tr>
-            
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompteID)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AccountName)
                 </td>
@@ -52,7 +56,7 @@
                     @Html.DisplayFor(modelItem => item.CType)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SegmentID)
+                    @Html.DisplayFor(modelItem => item.Segment.SName)
                 </td>
                 
                 <td class="text-center">

@@ -53,7 +53,7 @@ namespace PermissionManagement.MVC.Controllers
             if (id == 0)
             {
 
-                ViewData["SegmentID"] = new SelectList(_context.Segments.Where(s => s.SType == (SType)1).ToList(), "SegmentID", "SegmentID");
+                ViewData["SegmentID"] = new SelectList(_context.Segments.Where(s => s.SType == (SType)1).ToList(), "SegmentID", "SName");
                 return View(new Compte());
 
             }
@@ -75,23 +75,31 @@ namespace PermissionManagement.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit(int id, [Bind("CompteID,AccountName,Phone,Email,Adress,CType,SegmentID")] Compte compte)
         {
+
             if (ModelState.IsValid)
             {
                 //Insert
                 if (id == 0)
                 {
+                    
                     _context.Add(compte);
+                    int max;
+                    try
+                    {
+                        max = _context.Comptes.Max(p => p.CompteID);
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        max = 0;
+                    }
+                    compte.CompteID = max + 1;
                     var change_Log = new Change_Log
                     {
                         Log = ChangeLog.GetUserLog(HttpContext.User.Identity.Name, "ajoutée", "Compte", compte.CompteID, compte.AccountName)
                     };
                     _context.Change_Log.Add(change_Log);
                     await _context.SaveChangesAsync();
-
                 }
-
-
-
                 //Update
                 else
                 {

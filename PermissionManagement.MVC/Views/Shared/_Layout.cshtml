@@ -9,7 +9,7 @@
     <partial name="_Styles" />
   
 </head>
-<body style="background-color:white;">
+<body style="background-color:aliceblue;">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
  
@@ -30,6 +30,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
 
         <main role="main" class="pb-3">
@@ -63,6 +64,11 @@
                 "responsive": true,
             });
         });
+    </script>
+    <script>
+        function goBack() {
+          window.history.back();
+        }
     </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

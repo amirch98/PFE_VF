@@ -21,16 +21,18 @@ namespace PermissionManagement.MVC.Models
     public class Segment
     {
         public int SegmentID { get; set; }
-        [Display(Name =("Nom"))]
+        [Display(Name =("Name"))]
         public string SName { get; set; }
         [Range (1,100)]
-        [Display(Name =("Rang"))]
+        [Display(Name =("Rank"))]
         public int SRang { get; set; }
         [StringLength(200)]
         public string Description { get; set; }
         [Display(Name =("Type"))]
         public SType SType { get; set; }
         public Axe? Axe { get; set; }
+        [Display(Name = ("Reason"))]
+
         public string Raison { get; set; }
 
         public ICollection<Contact> Contacts { get; set; }

@@ -9,7 +9,7 @@ namespace PermissionManagement.MVC.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BrandID { get; set; }
         [Required]
-        [Display(Name =("Nom"))]
+        [Display(Name =("Name"))]
         public string BrandNom { get; set; }
 
         public ICollection<Produit> Produits { get; set; }

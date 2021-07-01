@@ -12,20 +12,22 @@ namespace PermissionManagement.MVC.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ContactID { get; set; }
-        [Display(Name = ("Titre"))]
         public string Title { get; set; }
         [Required]
-        [Display(Name =("Nom"))]
         public string Name { get; set; }
         [Required]
-        [Display(Name = ("Prénom"))]
+        [Display(Name = ("Last Name"))]
+
         public string LastName { get; set; }
-        [Display(Name = ("Téléphone"))]
+        [Display(Name = ("Phone"))]
         public int Tel { get; set; }
+        [Display(Name = ("Adress"))]
         public string Ville { get; set; }
         [EmailAddress]
         public string Email { get; set; }
         public string Statut { get; set; } = "Desactived";
+        [Display(Name = ("Segment"))]
+
         public int? SegmentID { get; set; }
 
         public Segment Segment { get; set; }

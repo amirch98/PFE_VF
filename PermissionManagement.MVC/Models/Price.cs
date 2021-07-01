@@ -20,14 +20,19 @@ namespace PermissionManagement.MVC.Models
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public int PriceID { get; set; }
             [Required]
+            [Display(Name =("Name"))]
             public string PriceNom { get; set; }
             [Required]
             public Context? Context { get; set; }
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+            [Display(Name = ("Start"))]
+
             public DateTime DateDebut { get; set; }
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+            [Display(Name = ("End"))]
+
             public DateTime DateFin { get; set; }
             [Required]
             public Currency? Currency { get; set; }

@@ -24,14 +24,24 @@ namespace PermissionManagement.MVC.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProduitID { get; set; }
         [Required]
+        [Display(Name = ("Name"))]
         public string ProduitNom { get; set; }
         public Type? Type { get; set; }
+        [Display(Name = ("Brand"))]
+
         public int BrandID { get; set; }
         public Competitor? Competitor { get; set; }
         public Unite? Unite { get; set; }
+        [Display(Name = ("Price"))]
+
         public int? PriceID { get; set; }
+        [Display(Name = ("Description"))]
         public string PDescription { get; set; }
+        [Display(Name = ("Theoretical Stock"))]
+
         public int Stock_Theorique { get; set; }
+        [Display(Name = ("Physical Stock"))]
+
         public int Stock_Physique { get; set; }
 
 

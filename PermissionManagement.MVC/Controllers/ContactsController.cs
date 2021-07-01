@@ -56,7 +56,7 @@ namespace PermissionManagement.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind("ContactID,Title,Name,LastName,Tel,Email,Statut,SegmentID")] Contact contact)
+        public async Task<IActionResult> AddOrEdit(int id, [Bind("ContactID,Title,Name,LastName,Ville,Tel,Email,Statut,SegmentID")] Contact contact)
         {
             if (ModelState.IsValid)
             {

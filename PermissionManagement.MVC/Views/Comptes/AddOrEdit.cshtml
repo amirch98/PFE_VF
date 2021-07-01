@@ -10,11 +10,10 @@
     <div class="col-md-12">
         <form asp-action="AddOrEdit" asp-route-id="@Model.CompteID" onsubmit="return jQueryAjaxPost(this);">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CompteID" />
             <div class="row">
                 <div class="form-group col-md-6">
                     <label asp-for="AccountName" class="control-label"></label>
-                    <input asp-for="AccountName" class="form-control" placeholder="Enter Account ID...."/>
+                    <input asp-for="AccountName" class="form-control" placeholder="Enter Account Name...."/>
                     <span asp-validation-for="AccountName" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
@@ -87,21 +86,12 @@
                         <option disabled selected>Selectionnez Segment</option>
                     </select>
                 </div>
-             </div>
-                <hr />
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-secondary btn-block btn-md text-white"  />
-                
-         
-            
-                    <a asp-action="Index" class="btn btn-dark btn-block btn-md text-white">Back to List</a>
-                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-secondary btn-block btn-md text-white"  />
+                <a asp-action="Index" class="btn btn-dark btn-block btn-md text-white">Back to List</a>
+            </div>
         </form>
-
-    </div>
-    
-    </div>
-
-    
-
-
+    </div>  
+</div>

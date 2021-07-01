@@ -202,7 +202,7 @@ namespace pfe.Controllers
                 {
                     var con =
                     (from contact in contacts
-                     where planMedical.SegmentID == contact.SegmentID
+                     where planMedical.SegmentID == contact.SegmentID && contact.Statut == "Active"
                      select contact).ToArray();
 
                     for (int i = 0; i < con.Length; i++)
@@ -543,7 +543,7 @@ namespace pfe.Controllers
         // GET : Activites
         public async Task<IActionResult> Activites(int id)
         {
-            var activites = _context.Activites.Include(a => a.Contact).Include(a => a.PlanMedical).Where(a => a.PlanMarketingID == id);
+            var activites = _context.Activites.Include(a => a.Contact).Include(a => a.PlanMedical).Include(a => a.Ressource).Where(a => a.PlanMedicalID == id);
             return View(await activites.ToListAsync());
         }
     }

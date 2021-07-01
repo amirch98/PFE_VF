@@ -15,17 +15,31 @@ namespace PermissionManagement.MVC.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AllocationID { get; set; }
+        [Display(Name = ("Type"))]
+
         public string A_Type { get; set; }
+        [Display(Name = ("Compte"))]
+
         public int? CompteID { get; set; }
+        [Display(Name = ("Contact"))]
+
         public int? ContactID { get; set; }
+        [Display(Name = ("Produit"))]
+
         public int ProduitID { get; set; }
+        [Display(Name = ("Created On"))]
+
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime A_CreatedOn { get; set; } = DateTime.Now;
+        [Display(Name = ("For (date)"))]
+
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime A_To { get; set; }
         public int Quantity { get; set; }
+        [Display(Name = ("Statut"))]
+
         public A_Statut A_Statut { get; set; } = (A_Statut)1;
 
         public Compte Compte { get; set; }

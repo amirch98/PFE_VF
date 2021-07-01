@@ -2,9 +2,12 @@
 
 <a asp-action="IndexA" class="btn btn-outline-success">Liste d'affectation</a>
 
-<table id="example" class="table table-bordered" style="width:100%">
+<table id="example" class="table table-bordered" style="width:100%;heigth:100%;background-color: white;">
     <thead>
         <tr>
+            <th>
+                ID
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -37,6 +40,9 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.ContactID)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
@@ -52,7 +58,7 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Segment.SegmentID)
+                        @Html.DisplayFor(modelItem => item.Segment.SName)
                     </td>
 
                     <td class="text-center">

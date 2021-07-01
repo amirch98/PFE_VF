@@ -14,7 +14,7 @@
     <div id="viewAll" class="card-body table-responsive">
         <form asp-controller="userroles" method="post" asp-action="update" asp-route-id="@Model.UserId" class="d-inline">
             <input asp-for="@Model.UserId" type="hidden" />
-            <table class="table table-striped" id="userRolesTable">
+            <table class="table table-striped" id="userRolesTable" style="width:100%;background-color: white;">
                 <thead>
                     <tr>
                         <th>
