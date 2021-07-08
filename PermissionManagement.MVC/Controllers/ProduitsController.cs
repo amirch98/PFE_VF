@@ -84,6 +84,16 @@ namespace PermissionManagement.MVC.Controllers
                     {
                         produit.Stock_Theorique = produit.Stock_Physique;
                         _context.Produits.Add(produit);
+                        int max;
+                        try
+                        {
+                            max = _context.Produits.Max(p => p.ProduitID);
+                        }
+                        catch (ArgumentNullException)
+                        {
+                            max = 0;
+                        }
+                        produit.ProduitID = max + 1;
                         await _context.SaveChangesAsync();
                         var change_Log = new Change_Log
                         {

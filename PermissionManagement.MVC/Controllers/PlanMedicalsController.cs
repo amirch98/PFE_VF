@@ -163,7 +163,7 @@ namespace pfe.Controllers
         //GET: CIBLES
         public async Task<IActionResult> Cibles(int id)
         {
-            var targets = _context.PlanTargets.Include(p => p.Compte).Include(p => p.Contact).Where(p => p.PlanMedicalID == id);
+            var targets = _context.PlanTargets.Include(p => p.Compte).Include(p => p.Contact).Include(p => p.PlanMedical).Where(p => p.PlanMedicalID == id);
 
             return View(await targets.ToListAsync());
         }
@@ -543,7 +543,7 @@ namespace pfe.Controllers
         // GET : Activites
         public async Task<IActionResult> Activites(int id)
         {
-            var activites = _context.Activites.Include(a => a.Contact).Include(a => a.PlanMedical).Include(a => a.Ressource).Where(a => a.PlanMedicalID == id);
+            var activites = _context.Activites.Include(a => a.Contact).Include(a => a.Ressource).Include(a => a.Allocation).Where(a => a.PlanMedicalID == id);
             return View(await activites.ToListAsync());
         }
     }

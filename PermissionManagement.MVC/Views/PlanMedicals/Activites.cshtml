@@ -3,9 +3,13 @@
     ViewData["Title"] = "Index";
 }
 
+
 <table id="example" class="table table-bordered" style="width:100%;background-color: white;">
     <thead>
         <tr>
+            <th>
+                ID
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Type)
             </th>
@@ -14,21 +18,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.À)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ratings)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Statut)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ressource)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlanMarketing)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlanMedical)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Contact)
@@ -43,6 +32,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ActiviteID)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
                 <td>
@@ -50,21 +42,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.À)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ratings)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Statut)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ressource.RName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlanMarketing.PlanMarketingID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlanMedical.PlanMedicalID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Contact.LastName)

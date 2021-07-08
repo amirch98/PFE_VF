@@ -76,7 +76,7 @@ namespace PermissionManagement.MVC.Controllers
         //GET: CIBLES
         public async Task<IActionResult> Cibles(int id)
         {
-            var targets = _context.PlanTargets.Include(p => p.Compte).Include(p => p.Contact).Where(p => p.PlanMarketingID == id);
+            var targets = _context.PlanTargets.Include(p => p.Compte).Include(p => p.Contact).Include(p => p.PlanMarketing).Where(p => p.PlanMarketingID == id);
 
             return View(await targets.ToListAsync());
         }

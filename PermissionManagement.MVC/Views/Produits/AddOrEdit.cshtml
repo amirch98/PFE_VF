@@ -10,18 +10,7 @@
     <div class="col-md-12">
         <form asp-action="AddOrEdit" asp-route-id="@Model.ProduitID" onsubmit="return jQueryAjaxPost(this);">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @if (Model.ProduitID == 0)
-            {
-                <div class="form-group">
-                    <label asp-for="ProduitID" class="control-label"></label>
-                    <input asp-for="ProduitID" class="form-control" />
-                    <span asp-validation-for="ProduitID" class="text-danger"></span>
-                </div>
-            }
-            else
-            {
-                <input type="hidden" asp-for="ProduitID" />
-            }
+            <input type="hidden" asp-for="ProduitID" />
             <div class="row">
                 <div class="form-group col-md-6">
                     <label asp-for="ProduitNom" class="control-label"></label>

@@ -4,10 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+@{
+    var plan = Model.First().PlanMarketing.Name;
+}
+
+<center>
+<h3>
+    Targets of Marketing Plan : @plan
+</h3>
+</center>
+
+    
 
 
-<table id="example" class="table table-bordered" style="width:100%">
+<table id="example" class="table table-bordered bg-white" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -16,19 +26,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Contact)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                @if (item.Compte == null){
+                    <td>
+                        Not Associated
+                    </td>
+                }else{
+                    <td>
                     @Html.DisplayFor(modelItem => item.Compte.AccountName)
                 </td>
-                <td>
+                }
+                @if (item.Contact == null){
+                    <td>
+                        Not Associated
+                    </td>
+                }else{
+                    <td>
                     @Html.DisplayFor(modelItem => item.Contact.LastName)
                 </td>
+                }
 
             </tr>
         }
