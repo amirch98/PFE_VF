@@ -80,6 +80,7 @@ namespace PermissionManagement.MVC.Controllers
                     if (price.DateDebut < price.DateFin)
                     {
                         _context.Add(price);
+
                         var change_Log = new Change_Log
                         {
                             Log = ChangeLog.GetUserLog(HttpContext.User.Identity.Name, "ajoutée", "Liste de prix", price.PriceID, price.PriceNom)

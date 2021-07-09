@@ -10,6 +10,8 @@
     <div class="col-md-12">
         <form asp-action="AddOrEdit" asp-route-id="@Model.CompteID" onsubmit="return jQueryAjaxPost(this);">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="CompteID" />
+
             <div class="row">
                 <div class="form-group col-md-6">
                     <label asp-for="AccountName" class="control-label"></label>
@@ -22,15 +24,15 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">+216</div>
                         </div>
-                        <input asp-for="Phone" class="form-control" placeholder="Telephone" />
+                        <input asp-for="Phone" class="form-control" placeholder="Enter phone number ......" />
                     </div>
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <label asp-for="Email" class="control-label"> </label>
+                    <input asp-for="Email" class="form-control"  placeholder="Enter email......."/>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
@@ -38,7 +40,7 @@
                 <div class="form-group col-md-6">
                     <label asp-for="Adress" class="control-label"></label>
                     <select asp-for="Adress" class="form-control">
-                        <option selected disabled>Selectionnez l'adresse</option>
+                        <option selected disabled>Enter Address......</option>
                         <option>Ariana</option>
                         <option>Béja</option>
                         <option>Ben Arous</option>
@@ -71,6 +73,7 @@
                 <div class="form-group col-md-6">
                     <label asp-for="CType" class="control-label"></label>
                     <select asp-for="CType" class="form-control">
+                        <option selected disabeld >Enter Type .......</option>
                         <option>Clinique</option>
                         <option>Pharmacie</option>
                         <option>Cabinet</option>
@@ -83,7 +86,7 @@
                 <div class="form-group col-md-12">
                     <label asp-for="SegmentID" class="control-label"></label>
                     <select asp-for="SegmentID" class="form-control" asp-items="ViewBag.SegmentID">
-                        <option disabled selected>Selectionnez Segment</option>
+                        <option disabled selected>Enter Segment ID .....</option>
                     </select>
                 </div>
             </div>

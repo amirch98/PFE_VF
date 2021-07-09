@@ -112,7 +112,7 @@ namespace PermissionManagement.MVC.Controllers
                 {
                     try
                     {
-
+                        produit.ProduitID = id;
                         _context.Update(produit);
                         var change_Log = new Change_Log
                         {

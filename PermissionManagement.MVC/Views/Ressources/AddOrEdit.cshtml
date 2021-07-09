@@ -10,6 +10,8 @@
     <div class="col-md-12">
         <form asp-action="AddOrEdit" asp-route-id="@Model.RessourceID" onsubmit="return jQueryAjaxPost(this);">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="RessourceID" />
+
             <div class="row">
                 <div class="form-group col-md-6">
                     <label asp-for="RName" class="control-label"></label>

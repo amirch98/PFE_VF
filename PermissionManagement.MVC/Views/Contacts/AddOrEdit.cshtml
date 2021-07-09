@@ -4,17 +4,16 @@
     ViewData["Title"] = "Create";
     Layout = null;
 }
-
-
-<div class="row">
-    <div class="col-md-12">
+  
         <form asp-action="AddOrEdit" asp-route-id="@Model.ContactID" onsubmit="return jQueryAjaxPost(this);">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ContactID" />
+
             <div class="row">
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
                         <label asp-for="Title" class="control-label"></label>
-                        <input asp-for="Title" class="form-control" />
+                        <input asp-for="Title" class="form-control" placeholder="Enter Title ...." />
                         <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
                 </div>
@@ -23,14 +22,14 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" />
+                        <input asp-for="Name" class="form-control" placeholder="Enter Name ...." />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="LastName" class="control-label"></label>
-                        <input asp-for="LastName" class="form-control" />
+                        <input asp-for="LastName" class="form-control" placeholder="Enter Last Name ...." />
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
@@ -39,23 +38,24 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="Tel" class="control-label"></label>
-                        <input asp-for="Tel" class="form-control" />
+                        <input asp-for="Tel" class="form-control" placeholder="Enter phone number ...." />
                         <span asp-validation-for="Tel" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" class="form-control" placeholder="Enter email...." />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
-                        <label asp-for="Ville" class="control-label"></label>
+                        <label asp-for="Ville" class="control-label">City</label>
                         <select asp-for="Ville" class="form-control js-example-basic-single">
+                            <option selected disabled>Enter City.....</option>
                             <option>Ariana</option>
                             <option>Béja</option>
                             <option>Ben Arous</option>
@@ -82,26 +82,25 @@
                             <option>Zaghouan</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="form-group">
-                        <label asp-for="SegmentID" class="control-label"></label>
-                        <select asp-for="SegmentID" class="form-control" asp-items="ViewBag.SegmentID"></select>
-                    </div>
-                </div>
-            </div>
+                </div></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label asp-for="SegmentID" class="control-label"></label>
+                            <select asp-for="SegmentID" class="form-control" asp-items="ViewBag.SegmentID"><option selected disabled>Enter Segment ID....</option></select>
+                        </div>
+                    <div>
+               
+           </div></div></div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-secondary btn-block btn-md text-white"  />
                 <a asp-action="Index" class="btn btn-dark btn-block btn-md text-white">Back to List</a>
             </div>
         </form>
-    </div>
-</div>
+        
+    
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
 

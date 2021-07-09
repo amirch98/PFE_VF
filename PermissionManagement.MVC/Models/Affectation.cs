@@ -11,15 +11,15 @@ namespace PermissionManagement.MVC.Models
         public int AffectationID { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        [Display(Name = ("Start"))]
+        [Display(Name = ("Start Date"))]
 
         public DateTime debut { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        [Display(Name = ("End"))]
+        [Display(Name = ("End Date"))]
 
         public DateTime? fin { get; set; }
-        [Display(Name = ("Compte"))]
+        [Display(Name = ("Account"))]
 
         public int CompteID { get; set; }
         [Display(Name = ("Contact"))]

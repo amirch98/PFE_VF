@@ -13,23 +13,23 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="debut" class="control-label"></label>
-                        <input asp-for="debut" class="form-control" />
+                        <input asp-for="debut" class="form-control" placeholder="Enter Start Date......"/>
                         <span asp-validation-for="debut" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label asp-for="fin" class="control-label"></label>
-                        <input asp-for="fin" class="form-control" />
+                        <input asp-for="fin" class="form-control" placeholder="Enter End Date......"/>
                         <span asp-validation-for="fin" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-12">
                     <div class="form-group">
                         <label asp-for="CompteID" class="control-label"></label>
-                        <select asp-for="CompteID" class="form-control" asp-items="ViewBag.CompteID"></select>
+                        <select asp-for="CompteID" class="form-control" asp-items="ViewBag.CompteID" placeholder="Select Account......"></select>
                     </div>
                 </div>
             </div>

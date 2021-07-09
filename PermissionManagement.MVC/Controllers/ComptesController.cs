@@ -78,31 +78,36 @@ namespace PermissionManagement.MVC.Controllers
 
             if (ModelState.IsValid)
             {
-                //Insert
                 if (id == 0)
                 {
                     
-                    _context.Add(compte);
-                    int max;
-                    try
-                    {
-                        max = _context.Comptes.Max(p => p.CompteID);
-                    }
-                    catch (ArgumentNullException)
-                    {
-                        max = 0;
-                    }
-                    compte.CompteID = max + 1;
-                    var change_Log = new Change_Log
-                    {
-                        Log = ChangeLog.GetUserLog(HttpContext.User.Identity.Name, "ajoutée", "Compte", compte.CompteID, compte.AccountName)
-                    };
-                    _context.Change_Log.Add(change_Log);
-                    await _context.SaveChangesAsync();
+                        _context.Add(compte);
+                        int max;
+                        try
+                        {
+                            max = _context.Comptes.Max(p => p.CompteID);
+                        }
+                        catch (ArgumentNullException)
+                        {
+                            max = 0;
+                        }
+                        compte.CompteID = max + 1;
+                        var change_Log = new Change_Log
+                        {
+                            Log = ChangeLog.GetUserLog(HttpContext.User.Identity.Name, "ajoutée", "Compte", compte.CompteID, compte.AccountName)
+                        };
+                        _context.Change_Log.Add(change_Log);
+                        await _context.SaveChangesAsync();
+
+                    
+                    
+
+
                 }
                 //Update
                 else
                 {
+                    
                     try
                     {
                         _context.Update(compte);
@@ -124,6 +129,7 @@ namespace PermissionManagement.MVC.Controllers
                             throw;
                         }
                     }
+
                 }
                 return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Comptes.Include(c => c.Segment).ToList()) });
             }

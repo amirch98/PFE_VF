@@ -48,7 +48,7 @@ namespace PermissionManagement.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind("BrandID,BrandNom,ProduitID")] Brand brand)
+        public async Task<IActionResult> AddOrEdit(int id, [Bind("BrandID,BrandNom")] Brand brand)
         {
             if (ModelState.IsValid)
             {

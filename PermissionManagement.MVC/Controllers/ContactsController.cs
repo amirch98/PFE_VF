@@ -90,7 +90,27 @@ namespace PermissionManagement.MVC.Controllers
                 //Update
                 else
                 {
-                    
+                    try
+                    {
+                        _context.Update(contact);
+                        var change_Log = new Change_Log
+                        {
+                            Log = ChangeLog.GetUserLog(HttpContext.User.Identity.Name, "modifiée", "Compte", contact.ContactID, contact.LastName + " " + contact.Name)
+                        };
+                        _context.Change_Log.Add(change_Log);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ContactExists(contact.ContactID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
                 }
                 return Json(new { isValid = true, html = RenderRazorViewToString(this, "_ViewAll", _context.Contacts.Include(c => c.Segment).ToList()) });
             }

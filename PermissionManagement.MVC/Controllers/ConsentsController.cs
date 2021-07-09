@@ -77,6 +77,7 @@ namespace PermissionManagement.MVC.Controllers
                 {
                     try
                     {
+                        
                         _context.Update(consent);
                         var change_Log = new Change_Log
                         {

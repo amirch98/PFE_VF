@@ -83,8 +83,9 @@
                                 }
                             <div class="dropdown-item">
                                 <a onclick="showInPopup('@Url.Action("AddOrEdit","Contacts",new {id=item.ContactID},Context.Request.Scheme)','Update Contact')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
-                            </div>                                <form asp-action="Delete" asp-route-id="@item.ContactID" onsubmit="return jQueryAjaxDelete(this)" class="dropdown-item d-inline">
-                                    <input type="hidden" asp-for="@item.ContactID" />
+                            </div>                                
+                                <form asp-action="Delete" asp-route-id="@item.ContactID" onsubmit="return jQueryAjaxDelete(this)" class="dropdown-item d-inline">
+                                    <input type="hidden" asp-for="@item.ContactID" /> 
                                     <input type="submit" value="Delete" class="btn btn-danger" />
                                 </form>
                                 <div class="dropdown-item"><a onclick="showInPopup('@Url.Action("CreateA","Contacts",new {id=item.ContactID},Context.Request.Scheme)','Affect Contact')" class="btn btn-dark text-white">Affect</a></div>
